@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190217204047_Order.cs" />
+    <Compile Remove="Migrations\20190217204047_Order.Designer.cs" />
+    <Compile Remove="Migrations\20190217205059_OrderNew.cs" />
+    <Compile Remove="Migrations\20190217205059_OrderNew.Designer.cs" />
+    <Compile Remove="Migrations\20190217205401_OrderNew2.cs" />
+    <Compile Remove="Migrations\20190217205401_OrderNew2.Designer.cs" />
+    <Compile Remove="Migrations\20190217205943_OrderNew3.cs" />
+    <Compile Remove="Migrations\20190217205943_OrderNew3.Designer.cs" />
+    <Compile Remove="Migrations\20190217211220_test.cs" />
+    <Compile Remove="Migrations\20190217211220_test.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Components\ShoppingCartSummary.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.1.1" />
+    <PackageReference Include="PayPal" Version="2.0.0-rc2" />
+  </ItemGroup>
+
+</Project>
