@@ -11,6 +11,7 @@ using SweetShop.ViewModels;
 
 namespace SweetShop.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -23,12 +24,13 @@ namespace SweetShop.Controllers
             _userManager = userManager;
         }
         // GET: /<controller>/ 
-
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
@@ -50,6 +52,7 @@ namespace SweetShop.Controllers
             return View(loginViewModel);
         }
 
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();

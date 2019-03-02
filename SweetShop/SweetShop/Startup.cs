@@ -25,9 +25,9 @@ namespace SweetShop
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //for SQL database
             services.AddDbContext<AppDBContext>(options => options.UseSqlServer(Configruation.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<AppDBContext>();
+
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = true;

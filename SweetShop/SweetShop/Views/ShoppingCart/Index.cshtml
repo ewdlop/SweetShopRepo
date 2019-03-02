@@ -5,10 +5,11 @@
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>Selected amount</th>
-            <th>Pie</th>
-            <th class="text-right">Price</th>
-            <th class="text-right">Subtotal</th>
+            <th width="15%" class="text-center">Selected amount</th>
+            <th>Image</th>
+            <th width="30%" class="text-center">Pie</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Subtotal</th>
         </tr>
     </thead>
     <tbody>
@@ -16,7 +17,10 @@
         {
             <tr>
                 <td class="text-center">@line.Amount</td>
-                <td class="text-left">@line.Sweet.Name</td>
+                <td>
+                    <img src="@line.Sweet.ImageThumbnailUrl" alt="">
+                </td>
+                <td class="text-center">@line.Sweet.Name</td>
                 <td class="text-right">@line.Sweet.Price.ToString("c")</td>
                 <td class="text-right">
                     @((line.Amount * line.Sweet.Price).ToString("c"))
