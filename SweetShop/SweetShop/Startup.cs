@@ -15,16 +15,28 @@ namespace SweetShop
 {
     public class Startup
     {
+        private readonly IHostingEnvironment _env;
+
         public IConfiguration Configruation{get;}
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment  env)
         {
             Configruation = configuration;
+            _env = env;
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies 
+                // is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             //for SQL database
             services.AddDbContext<AppDBContext>(options => options.UseSqlServer(Configruation.GetConnectionString("DefaultConnection")));
 
@@ -38,11 +50,23 @@ namespace SweetShop
             services.AddTransient<ISweetRepository, SweetRepository>();
             services.AddTransient<IFeedbackRepository, FeedbackRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+            services.AddScoped(ShoppingCart.GetCart);
             services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddMemoryCache();
-            services.AddSession();
+            services.AddSession(options =>
+            {
+                options.Cookie.IsEssential = true;
+            });
             services.AddMvc();
+
+            if (!_env.IsDevelopment())
+            {
+                services.AddHttpsRedirection(options =>
+                {
+                    options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
+                    options.HttpsPort = 443;
+                });
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,9 +74,11 @@ namespace SweetShop
         {
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSession();
             app.UseAuthentication();
+            app.UseCookiePolicy();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
