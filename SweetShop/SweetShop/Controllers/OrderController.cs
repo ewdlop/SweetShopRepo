@@ -64,6 +64,8 @@ namespace SweetShop.Controllers
         {
             var result = PDTHolder.Sucess(Request.Query["tx"].ToString());
             _shoppingCart.ClearCart();
+            ViewBag.CheckoutCompleteMessage = HttpContext.User.Identity.Name +
+                                   ", thanks for your order. You'll soon enjoy our delicious pies!";
             return View();
         }
     }
