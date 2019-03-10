@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SweetShop.Models;
+using SweetShop.PayPal;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -24,6 +25,10 @@ namespace SweetShop.Controllers
         [Authorize]
         public IActionResult Checkout()
         {
+            var items = _shoppingCart.GetShoppingCartItems();
+            PayPalConfig payPalConfig = PayPalService.GetPayPalConfig();
+            ViewBag.payPalConfig = payPalConfig;
+            ViewBag.items = items;
             return View();
         }
 
@@ -38,8 +43,7 @@ namespace SweetShop.Controllers
             {
                 ModelState.AddModelError("", "Your cart is empty, add some pies first");
             }
-
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
                 _orderRepository.CreateOrder(order);
                 _shoppingCart.ClearCart();
@@ -51,9 +55,16 @@ namespace SweetShop.Controllers
 
         public IActionResult CheckoutComplete()
         {
+            var result = PDTHolder.Sucess(Request.Query["tx"].ToString());
             ViewBag.CheckoutCompleteMessage = HttpContext.User.Identity.Name +
                                       ", thanks for your order. You'll soon enjoy our delicious pies!";
             return View();
+        }
+        [Route("Success")]
+        public IActionResult Success()
+        {
+            var result = PDTHolder.Sucess(Request.Query["tx"].ToString());
+            return View("Success");
         }
     }
 }

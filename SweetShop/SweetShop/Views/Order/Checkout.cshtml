@@ -1,5 +1,6 @@
 ﻿@model Order
 
+
 <form asp-action="Checkout" method="post" class="form-horizontal" role="form">
     <h4>You're just one step away from your delicious pies.</h4>
     <div asp-validation-summary="All" class="text-danger"></div>
@@ -87,8 +88,26 @@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-5">
             <input type="submit" class="btn btn-primary" value="Complete order" />
+            
         </div>
     </div>
-
-
+</form>
+<form method="post" action="@ViewBag.payPalConfig.PostUrl">
+    <input type="hidden" name="upload" value="1" />
+    <input type="hidden" name="return" value="ViewBag.payPalConfig.ReturnUrl" />
+    <input type="hidden" name="cmd" value="_cart" />
+    <input type="hidden" name="business" value="thisisusername234@gmail.com" />
+    @{
+        var index = 1;
+    }
+    @foreach (var item in ViewBag.items)
+    {
+        <input type="hidden" name="item_number_@index" value="@item.Sweet.Id.ToString()" />
+        <input type="hidden" name="item_name_@index" value="@item.Sweet.Name" />
+        <input type="hidden" name="amount_@index" value="@item.Sweet.Price" />
+        <input type="hidden" name="quantity_@index" value="@item.Amount" />
+        index++;
+    }
+    <input type="image"
+           src="http://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif">
 </form>
