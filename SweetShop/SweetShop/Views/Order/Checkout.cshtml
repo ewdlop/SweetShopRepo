@@ -94,7 +94,7 @@
 </form>
 <form method="post" action="@ViewBag.payPalConfig.PostUrl">
     <input type="hidden" name="upload" value="1" />
-    <input type="hidden" name="return" value="ViewBag.payPalConfig.ReturnUrl" />
+    <input type="hidden" name="return" value="https://localhost:44334/Order/Success" />
     <input type="hidden" name="cmd" value="_cart" />
     <input type="hidden" name="business" value="thisisusername234@gmail.com" />
     @{

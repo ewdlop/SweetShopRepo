@@ -55,16 +55,16 @@ namespace SweetShop.Controllers
 
         public IActionResult CheckoutComplete()
         {
-            var result = PDTHolder.Sucess(Request.Query["tx"].ToString());
             ViewBag.CheckoutCompleteMessage = HttpContext.User.Identity.Name +
                                       ", thanks for your order. You'll soon enjoy our delicious pies!";
             return View();
         }
-        [Route("Success")]
+
         public IActionResult Success()
         {
             var result = PDTHolder.Sucess(Request.Query["tx"].ToString());
-            return View("Success");
+            _shoppingCart.ClearCart();
+            return View();
         }
     }
 }
