@@ -1,5 +1,7 @@
 ﻿@model ShoppingCartViewModel
-
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 <h2>Your shopping cart</h2>
 <h4>Here are the delicious pies in your shopping cart.</h4>
 <table class="table table-bordered table-striped">
@@ -37,7 +39,16 @@
         </tr>
     </tfoot>
 </table>
-
-<div class="text-center">
-    <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Check out now!</a>
-</div>
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="text-center">
+        <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Check out now!</a>
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">CheckoutAsUser</a>
+        <a class="btn btn-primary" asp-controller="Order" asp-action="CheckoutGuest">CheckoutAsGuest</a>
+    </div>
+}
