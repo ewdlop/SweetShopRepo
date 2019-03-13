@@ -38,5 +38,10 @@ namespace SweetShop.Controllers
                 return NotFound();
             return View(sweet);
         }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
     }
 }
