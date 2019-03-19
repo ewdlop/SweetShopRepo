@@ -9,5 +9,6 @@ namespace SweetShop.Models
     {
         IEnumerable<Sweet> GetSweets();
         Sweet GetSweetById(int sweetId);
+        IEnumerable<Sweet> SweetsOfTheWeek();
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SweetShop.ViewModels
 {
-    public class HomeViewModel
+    public class SweetsListViewModel
     {
-        public string Title { get; set; }
-        public IEnumerable<Sweet> SweetsOfTheWeek { get; set; }
+        public IEnumerable<Sweet> Sweets { get; set; }
+        public string CurrentCategory { get; set; }
     }
 }

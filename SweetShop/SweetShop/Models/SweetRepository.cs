@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace SweetShop.Models
             _appDBContext = appDBContext;
         }
 
+
+
         Sweet ISweetRepository.GetSweetById(int sweetId)
         {
             return _appDBContext.Sweets.FirstOrDefault(s => s.Id == sweetId);
@@ -22,6 +25,12 @@ namespace SweetShop.Models
         IEnumerable<Sweet> ISweetRepository.GetSweets()
         {
             return _appDBContext.Sweets;
+        }
+
+        IEnumerable<Sweet> ISweetRepository.SweetsOfTheWeek()
+        {
+
+            return _appDBContext.Sweets.Include(s => s.Category).Where(s => s.IsSweetOfTheWeek);
         }
     }
 }

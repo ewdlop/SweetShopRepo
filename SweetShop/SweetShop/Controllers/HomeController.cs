@@ -22,26 +22,19 @@ namespace SweetShop.Controllers
         public IActionResult Index()
         {
 
-            var sweets = _sweetRepository.GetSweets().OrderBy(s => s.Name);
+
             var homeViewModel = new HomeViewModel()
             {
                 Title = "Welcome to Sweet Shop",
-                Sweets = sweets.ToList()
+                SweetsOfTheWeek = _sweetRepository.SweetsOfTheWeek()
             };
             return View(homeViewModel);
-        }
-
-        public IActionResult Details(int id)
-        {
-            var sweet = _sweetRepository.GetSweetById(id);
-            if (sweet == null)
-                return NotFound();
-            return View(sweet);
         }
 
         public IActionResult Privacy()
         {
             return View();
         }
+
     }
 }

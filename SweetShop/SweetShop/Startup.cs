@@ -48,6 +48,7 @@ namespace SweetShop
                 options.User.RequireUniqueEmail = false;
             });
             services.AddTransient<ISweetRepository, SweetRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IFeedbackRepository, FeedbackRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(ShoppingCart.GetCart);
@@ -82,7 +83,12 @@ namespace SweetShop
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name:"default",
+                  name: "categoryfilter",
+                  template: "Sweet/{action}/{category?}",
+                  defaults: new { Controller = "Sweet", action = "List" });
+
+                routes.MapRoute(
+                    name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }

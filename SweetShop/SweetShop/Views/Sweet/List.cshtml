@@ -1,0 +1,7 @@
+﻿@model SweetsListViewModel
+
+@ViewBag.CurrentCategory
+@foreach (var sweet in Model.Sweets)
+{
+    @await Html.PartialAsync("SweetOverviewSummary", sweet)
+}

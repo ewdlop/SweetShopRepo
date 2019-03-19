@@ -1,0 +1,19 @@
+﻿@model Sweet
+
+<div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="thumbnail">
+        <img src="@Model.ImageThumbnailUrl" alt="">
+        <div class="caption">
+            <h3 class="pull-right">@Model.Price.ToString("c")</h3>
+            <h4>
+                <a asp-controller="Home" asp-action="Details"
+                   asp-route-id="@Model.Id">@Model.Name</a>
+            </h4>
+            <p>@Model.ShortDescription</p>
+            <p class="button">
+                <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="AddToShoppingCart"
+                   asp-route-id="@Model.Id">Add to cart</a>
+            </p>
+        </div>
+    </div>
+</div>

@@ -7,18 +7,19 @@
     <meta name="viewport" conte
           nt="width=device-width" />
     <link href="~/lib//bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="~/content/site.css" />
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div class="container">
-        <partial name="_CookieConsentPartial" />
-    </div>
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-controller="Home" asp-action="Index" class="navbar-brand">Sweet Shop</a></li>
+                    @await Component.InvokeAsync("CategoryMenu")
                     <li><a asp-controller="Feedback" asp-action="Index">FeedBack</a></li>
                     <li><a asp-controller="Home" asp-action="Privacy">Privacy</a></li>
                     @await Component.InvokeAsync("ShoppingCartSummary")
@@ -27,9 +28,14 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content>
+    <partial name="_CookieConsentPartial" />
+    <div class="container body-content">
         <div class="row">
             @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; 2019 - SweetShop</p>
+            </footer>
         </div>
     </div>
     @RenderSection("Scripts", required: false)
