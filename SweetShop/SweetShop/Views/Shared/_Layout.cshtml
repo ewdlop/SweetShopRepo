@@ -11,6 +11,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="~/content/site.css" />
     <title>@ViewBag.Title</title>
+    <script>
+        
+        $(window).on("load", function () {
+            setInterval(function () { $(".col-sm-4").fadeIn(1000) }, 0);
+            setInterval(function () { $(".col-md-12").fadeIn(2000) }, 0);
+        });
+    </script>
 </head>
 <body>
 
