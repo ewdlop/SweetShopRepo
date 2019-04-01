@@ -24,6 +24,8 @@ namespace SweetShop.Models
 
         IEnumerable<Sweet> ISweetRepository.GetSweets()
         {
+            IEnumerable<Sweet> test;
+           
             return _appDBContext.Sweets;
         }
 

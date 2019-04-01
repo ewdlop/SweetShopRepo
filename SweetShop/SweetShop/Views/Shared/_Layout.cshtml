@@ -40,11 +40,19 @@
         <div class="row">
             @RenderBody()
             <hr />
-            <footer>
-                <p>&copy; 2019 - SweetShop</p>
-            </footer>
+
         </div>
     </div>
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>&copy; 2019 - SweetShop</li>
+            </ul>
+        </div>
+        <footer></footer>
+</nav>
+
     @RenderSection("Scripts", required: false)
+
 </body>
 </html>
