@@ -15,7 +15,12 @@
         
         $(window).on("load", function () {
             setInterval(function () { $(".col-sm-4").fadeIn(1000) }, 0);
-            setInterval(function () { $(".col-md-12").fadeIn(2000) }, 0);
+        });
+
+        $(document).ready(function () {
+            $('.carousel').carousel({
+                interval: 3000
+            })
         });
     </script>
 </head>
