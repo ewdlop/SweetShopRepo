@@ -1,8 +1,12 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-image: url('/images/pattern.jpg');
-    background-repeat: repeat;
+    background-image: url('/images/coffee.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 500px;
 }
 
 .body-content {
@@ -32,4 +36,40 @@
 
 .carousel.fade .item.active {
     opacity: 1;
+}
+
+.row.display-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.thumbnail {
+    height: 100%;
+    background-image: url('/images/panel.jpg')
+}
+
+/* extra positioning */
+.thumbnail {
+    display: flex;
+    flex-direction: column;
+    background-image: url('/images/panel.jpg')
+}
+
+.thumbnail .caption {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+}
+tr td:hover {
+    background-color: #F69;
+    border: thin solid black;
+}
+
+tr:nth-child(even) {
+    background: #CCC
+}
+
+tr:nth-child(odd) {
+    background: #FFF
 }

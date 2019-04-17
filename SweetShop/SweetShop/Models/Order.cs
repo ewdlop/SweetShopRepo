@@ -27,6 +27,7 @@ namespace SweetShop.Models
         [Required(ErrorMessage = "Please enter your address")]
         [StringLength(100)]
         [Display(Name = "Address Line 1")]
+        [RegularExpression(@"^[a-zA-Z0-9 -']*$", ErrorMessage = "Invalid characters detected")]
         public string AddressLine1 { get; set; }
 
         [Display(Name = "Address Line 2")]

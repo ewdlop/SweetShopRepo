@@ -2,8 +2,8 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-<h2>Your shopping cart</h2>
-<h4>Here are the delicious pies in your shopping cart.</h4>
+<h2 style="color:#ffffff">Your shopping cart</h2>
+<h4 style="color:#ffffff">Here are the orders in your shopping cart.</h4>
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
@@ -20,7 +20,7 @@
             <tr>
                 <td class="text-center">@line.Amount</td>
                 <td>
-                    <img style="display:block" width="100%" height="100%" src="@line.Sweet.ImageThumbnailUrl" alt="">
+                    <img style="display:block" width="320" height="200" src="@line.Sweet.ImageThumbnailUrl" alt="">
                 </td>
                 <td class="text-center">@line.Sweet.Name</td>
                 <td class="text-right">@line.Sweet.Price.ToString("c")</td>

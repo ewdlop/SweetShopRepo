@@ -4,10 +4,10 @@
     Layout = "_Layout";
 }
 @await Html.PartialAsync("Carousel")
-<h2>Sweets of the week</h2>
-<h4>Our weekly selection - just for you!</h4>
+<h2 style="color:#ffffff">Sweets of the week</h2>
+<h4 style="color:#ffffff">Our weekly selection - just for you!</h4>
 
-<div class="row">
+<div class="row display-flex">
 
     @foreach (var sweet in Model.SweetsOfTheWeek)
     {

@@ -32,8 +32,9 @@ namespace SweetShop.Controllers
             return View();
         }
 
-
+        /*
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Authorize]
         public IActionResult Checkout(Order order)
         {
@@ -53,7 +54,7 @@ namespace SweetShop.Controllers
             return View(order);
 
         }
-
+        */
         public IActionResult CheckoutGuest()
         {
             var items = _shoppingCart.GetShoppingCartItems();
@@ -62,8 +63,8 @@ namespace SweetShop.Controllers
             ViewBag.items = items;
             return View();
         }
-
-
+        /*
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public IActionResult CheckoutGuest(Order order)
         {
@@ -83,6 +84,7 @@ namespace SweetShop.Controllers
             return View(order);
 
         }
+        */
 
 
         public IActionResult CheckoutComplete()

@@ -53,8 +53,7 @@ namespace SweetShop
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
-
-            //for SQL database
+        
             services.AddDbContext<AppDBContext>(options => options.UseSqlServer(Configruation.GetConnectionString("DefaultConnection")));
 
             services.Configure<IdentityOptions>(options =>
@@ -63,7 +62,17 @@ namespace SweetShop
                 options.Password.RequiredLength = 8;
                 options.Password.RequireNonAlphanumeric = false;
                 options.User.RequireUniqueEmail = false;
+                options.Lockout.MaxFailedAccessAttempts = 10;
+                options.SignIn.RequireConfirmedEmail = true;
             });
+
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials();
+            }));
             services.AddTransient<ISweetRepository, SweetRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IFeedbackRepository, FeedbackRepository>();
@@ -101,7 +110,11 @@ namespace SweetShop
 
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
-
+            services.AddHsts(options =>
+            {
+                options.Preload = true;
+                options.IncludeSubDomains = true;
+            });
             services.AddMvc();
 
             if (!_env.IsDevelopment())
@@ -123,13 +136,22 @@ namespace SweetShop
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSession();
-            app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .AllowCredentials());
-
+            app.UseCors("MyPolicy");
             app.UseAuthentication();
+
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("X-Xss-Protection", "1");
+                await next();
+            });
+
+
+            /*app.UseCsp(options => options.DefaultSources(s => s.Self())  
+                .ScriptSources(s => s.Self().CustomSources("https://ajax.googleapis.com", 
+                "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"))
+                .ReportUris(r => r.Uris("/report"))
+            );*/
+
             app.UseCookiePolicy();
             app.UseMvc(routes =>
             {

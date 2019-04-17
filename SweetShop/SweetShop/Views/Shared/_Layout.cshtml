@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="~/content/site.css" />
     <title>@ViewBag.Title</title>
     <script>
-        
         $(window).on("load", function () {
             setInterval(function () { $(".col-sm-4").fadeIn(1000) }, 0);
         });
@@ -25,7 +24,6 @@
     </script>
 </head>
 <body>
-
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-collapse collapse">
@@ -55,7 +53,7 @@
             </ul>
         </div>
         <footer></footer>
-</nav>
+    </nav>
 
     @RenderSection("Scripts", required: false)
 

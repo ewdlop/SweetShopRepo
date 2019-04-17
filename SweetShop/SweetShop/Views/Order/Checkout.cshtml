@@ -1,6 +1,5 @@
 ﻿@model Order
-
-
+<!--
 <form asp-action="Checkout" method="post" class="form-horizontal" role="form">
     <h4>You're just one step away from your delicious pies.</h4>
     <div asp-validation-summary="All" class="text-danger"></div>
@@ -88,13 +87,14 @@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-5">
             <input type="submit" class="btn btn-primary" value="Complete order" />
-            
+
         </div>
     </div>
 </form>
+-->
 <form method="post" action="@ViewBag.payPalConfig.PostUrl">
     <input type="hidden" name="upload" value="1" />
-    <input type="hidden" name="return" value="https://localhost:44334/Order/Success" />
+    <input type="hidden" name="return" value="https://sweetshop20190319074033.azurewebsites.net/Order/Success" />
     <input type="hidden" name="cmd" value="_cart" />
     <input type="hidden" name="business" value="ray810815@gmail.com" />
     @{
@@ -110,4 +110,5 @@
     }
     <input type="image"
            src="http://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif">
+    @Html.AntiForgeryToken()
 </form>

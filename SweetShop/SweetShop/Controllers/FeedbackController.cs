@@ -26,6 +26,7 @@ namespace SweetShop.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Index(Feedback feedback)
         {
             if(ModelState.IsValid)

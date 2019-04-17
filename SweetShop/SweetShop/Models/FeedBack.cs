@@ -14,6 +14,7 @@ namespace SweetShop.Models
 
         [Required]
         [StringLength(100, ErrorMessage = "Your name is required")]
+        [RegularExpression(@"^[a-zA-Z0-9 -']*$", ErrorMessage = "Invalid characters detected")]
         public string Name { get; set; }
 
         [Required]
@@ -24,6 +25,7 @@ namespace SweetShop.Models
         public string Email { get; set; }
 
         [Required]
+        [RegularExpression(@"^[a-zA-Z0-9 -']*$", ErrorMessage = "Invalid characters detected")]
         [StringLength(5000, ErrorMessage = "Your message is required")]
         public string Message { get; set; }
 
