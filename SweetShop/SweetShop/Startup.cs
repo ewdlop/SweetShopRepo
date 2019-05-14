@@ -85,7 +85,7 @@ namespace SweetShop
                 options.Cookie.IsEssential = true;
             });
             services.AddCors();
-            services.AddAntiforgery(opts => { opts.RequireSsl = true; });
+
             var appSettingsSection = Configruation.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
             var appSettings = appSettingsSection.Get<AppSettings>();
