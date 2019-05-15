@@ -10,14 +10,14 @@ using SweetShop.Models;
 namespace SweetShop.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20190319000824_init")]
-    partial class init
+    [Migration("20190515225103_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
+                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -343,6 +343,8 @@ namespace SweetShop.Migrations
                     b.Property<decimal>("Price");
 
                     b.Property<string>("ShortDescription");
+
+                    b.Property<int>("testID");
 
                     b.HasKey("Id");
 

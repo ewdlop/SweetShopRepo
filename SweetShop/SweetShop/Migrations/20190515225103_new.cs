@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SweetShop.Migrations
 {
-    public partial class init : Migration
+    public partial class @new : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -221,7 +221,8 @@ namespace SweetShop.Migrations
                     ImageThumbnailUrl = table.Column<string>(nullable: true),
                     IsSweetOfTheWeek = table.Column<bool>(nullable: false),
                     IsInStock = table.Column<bool>(nullable: false),
-                    CategoryId = table.Column<int>(nullable: false)
+                    CategoryId = table.Column<int>(nullable: false),
+                    testID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

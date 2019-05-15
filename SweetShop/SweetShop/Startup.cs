@@ -55,6 +55,7 @@ namespace SweetShop
             });
         
             services.AddDbContext<AppDBContext>(options => options.UseSqlServer(Configruation.GetConnectionString("DefaultConnection")));
+            services.BuildServiceProvider().GetService<AppDBContext>().Database.Migrate();
 
             services.Configure<IdentityOptions>(options =>
             {

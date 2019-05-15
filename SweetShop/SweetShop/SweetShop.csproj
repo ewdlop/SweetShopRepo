@@ -18,6 +18,12 @@
     <Compile Remove="Migrations\20190217211220_test.Designer.cs" />
     <Compile Remove="Migrations\20190310040751_paypaltest.cs" />
     <Compile Remove="Migrations\20190310040751_paypaltest.Designer.cs" />
+    <Compile Remove="Migrations\20190319000824_init.cs" />
+    <Compile Remove="Migrations\20190319000824_init.Designer.cs" />
+    <Compile Remove="Migrations\20190514232955_test.cs" />
+    <Compile Remove="Migrations\20190514232955_test.Designer.cs" />
+    <Compile Remove="Migrations\20190515223625_test2.cs" />
+    <Compile Remove="Migrations\20190515223625_test2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +36,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.1.1" />
     <PackageReference Include="Microsoft.jQuery.Unobtrusive.Validation" Version="3.2.11" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
