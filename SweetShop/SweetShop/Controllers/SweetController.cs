@@ -64,6 +64,33 @@ namespace SweetShop.Controllers
             return View(sweet);
         }
 
+        public ViewResult Filter(string search)
+        {
+            IEnumerable<Sweet> sweets;
+            string currentCategory = string.Empty;
+
+            if (string.IsNullOrEmpty(search))
+            {
+                return View(new SweetsListViewModel
+                {
+                    Sweets = _sweetRepository.GetSweets().Where(s => s.Name.ToLower().Contains("XXXXXXXXX"))
+                   .OrderBy(s => s.Id),
+                    CurrentCategory = "All sweets"
+                });
+            }
+            else
+            {
+                sweets = _sweetRepository.GetSweets().Where(s => s.Name.ToLower().Contains(search.ToLower()))
+                   .OrderBy(s => s.Id);
+                currentCategory = "All sweets";
+            }
+
+            return View(new SweetsListViewModel
+            {
+                Sweets = sweets,
+                CurrentCategory = "All sweets"
+            });
+        }
     }
 }
 
