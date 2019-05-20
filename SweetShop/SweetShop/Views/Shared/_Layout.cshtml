@@ -9,6 +9,8 @@
     <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOOxG7iR9tLanAb0cO4xr9M3zqYHNdElc&callback=initMap"
+            async defer></script>
     <link rel="stylesheet" href="~/content/site.css" />
     <title>@ViewBag.Title</title>
     <script>
@@ -28,10 +30,11 @@
         <div class="container">
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-controller="Home" asp-action="Index" class="navbar-brand">Sweet Shop</a></li>
+                    <li><a asp-controller="Home" asp-action="Index" class="navbar-brand"> Demo Sweet Shop</a></li>
                     @await Component.InvokeAsync("CategoryMenu")
                     <li><a asp-controller="Feedback" asp-action="Index">FeedBack</a></li>
                     <li><a asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                    <li><a asp-controller="Map" asp-action="Index">Find us</a></li>
                     @await Component.InvokeAsync("ShoppingCartSummary")
                 </ul>
                 <partial name="_LoginPartial" />

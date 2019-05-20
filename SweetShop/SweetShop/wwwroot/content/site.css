@@ -48,7 +48,6 @@
     background-image: url('/images/panel.jpg')
 }
 
-/* extra positioning */
 .thumbnail {
     display: flex;
     flex-direction: column;
@@ -56,10 +55,10 @@
 }
 
 .thumbnail .caption {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 tr td:hover {
     background-color: #F69;
