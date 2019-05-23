@@ -3,15 +3,25 @@
 @{
     Layout = "_Layout";
 }
-@await Html.PartialAsync("Carousel")
-<h2 style="color:#ffffff">Sweets of the week</h2>
-<h4 style="color:#ffffff">Our weekly selection - just for you!</h4>
+<div class="jumbotron text-center" style="background-color:#87784d">
+    <h2 style="color:#ffffff" align=center>Welcome to the Demo Sweet Shop(course project)</h2>
+    <h4 style="color:#ffffff" align=center>Please enjoy!</h4>
+    @await Html.PartialAsync("Carousel")
+</div>
 
-<div class="row display-flex">
 
-    @foreach (var sweet in Model.SweetsOfTheWeek)
-    {
-        @await Html.PartialAsync("SweetOfTheWeekSummary", sweet)
-    }
+<div class="jumbotron text-center" style="background-color:#87784d">
+    <h2 style="color:#ffffff" align=center>Sweets of the week</h2>
+    <h4 style="color:#ffffff" align=center>Our weekly selection</h4>
+    <div class="row display-flex">
 
+        @foreach (var sweet in Model.SweetsOfTheWeek)
+        {
+            @await Html.PartialAsync("SweetOfTheWeekSummary", sweet)
+        }
+
+    </div>
+</div>
+<div class="jumbotron text-center" style="background-color:#87784d">
+    <h2 style="color:#ffffff" align=center>News</h2>
 </div>

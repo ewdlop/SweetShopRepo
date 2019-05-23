@@ -1,13 +1,15 @@
 ﻿@model SweetsListViewModel
 
 @ViewBag.CurrentCategory
-<div class="row display-flex">
-    @foreach (var sweet in Model.Sweets)
-    {
-        @await Html.PartialAsync("SweetOverviewSummary", sweet)
-    }
-</div>
 
+<div class="jumbotron text-center" style="background-color:#87784d">
+    <div class="row display-flex">
+        @foreach (var sweet in Model.Sweets)
+        {
+            @await Html.PartialAsync("SweetOverviewSummary", sweet)
+        }
+    </div>
+</div>
 @section scripts{
 
 }

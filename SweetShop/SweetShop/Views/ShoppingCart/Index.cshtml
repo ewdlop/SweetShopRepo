@@ -2,53 +2,55 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-<h2 style="color:#ffffff">Your shopping cart</h2>
-<h4 style="color:#ffffff">Here are the orders in your shopping cart.</h4>
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th width="15%" class="text-center">Selected amount</th>
-            <th width="30%" class="text-center">Image</th>
-            <th width="30%" class="text-center">Pie</th>
-            <th class="text-center">Price</th>
-            <th class="text-center">Subtotal</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
-        {
+<div class="jumbotron text-center" style="background-color:#87784d">
+    <h2 style="color:#ffffff">Your shopping cart</h2>
+    <h4 style="color:#ffffff">Here are the orders in your shopping cart.</h4>
+    <table class="table table-bordered table-striped">
+        <thead>
             <tr>
-                <td class="text-center">@line.Amount</td>
-                <td>
-                    <img style="display:block" width="320" height="200" src="@line.Sweet.ImageThumbnailUrl" alt="">
-                </td>
-                <td class="text-center">@line.Sweet.Name</td>
-                <td class="text-right">@line.Sweet.Price.ToString("c")</td>
+                <th width="15%" class="text-center">Selected amount</th>
+                <th width="30%" class="text-center">Image</th>
+                <th width="30%" class="text-center">Pie</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+            {
+                <tr>
+                    <td class="text-center">@line.Amount</td>
+                    <td>
+                        <img style="display:block" width="320" height="200" src="@line.Sweet.ImageThumbnailUrl" alt="">
+                    </td>
+                    <td class="text-center">@line.Sweet.Name</td>
+                    <td class="text-right">@line.Sweet.Price.ToString("c")</td>
+                    <td class="text-right">
+                        @((line.Amount * line.Sweet.Price).ToString("c"))
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total:</td>
                 <td class="text-right">
-                    @((line.Amount * line.Sweet.Price).ToString("c"))
+                    @Model.ShoppingCartTotal.ToString("c")
                 </td>
             </tr>
-        }
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="3" class="text-right">Total:</td>
-            <td class="text-right">
-                @Model.ShoppingCartTotal.ToString("c")
-            </td>
-        </tr>
-    </tfoot>
-</table>
-@if (SignInManager.IsSignedIn(User))
-{
-    <div class="text-center">
-        <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Check out now!</a>
-    </div>
-}
-else
-{
-    <div class="text-center">
-        <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">CheckoutAsUser</a>
-        <a class="btn btn-primary" asp-controller="Order" asp-action="CheckoutGuest">CheckoutAsGuest</a>
-    </div>
-}
+        </tfoot>
+    </table>    
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <div class="text-center">
+            <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Check out now!</a>
+        </div>
+    }
+    else
+    {
+        <div class="text-center">
+            <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">CheckoutAsUser</a>
+            <a class="btn btn-primary" asp-controller="Order" asp-action="CheckoutGuest">CheckoutAsGuest</a>
+        </div>
+    }
+</div>
