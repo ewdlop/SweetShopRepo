@@ -42,7 +42,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" id="search" name="search">
                         <div class="input-group-btn">
-                            <button class="btn btn-default" type ="submit">
+                            <button class="btn btn-default" type="submit">
                                 <i class="glyphicon glyphicon-search"></i>
                             </button>
                         </div>
@@ -59,16 +59,13 @@
 
         </div>
     </div>
-    <nav class="navbar navbar-inverse navbar-fixed-bottom">
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>&copy; 2019 - SweetShop</li>
-            </ul>
-        </div>
-        <footer></footer>
-    </nav>
-
-    @RenderSection("Scripts", required: false)
+        <nav class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="footer-copyright text-center py-3">
+                © 2019 Copyright:
+                <a href="https://sweetshop20190515065500.azurewebsites.net/">https://sweetshop20190515065500.azurewebsites.net/</a>
+            </div>
+        </nav>
+        @RenderSection("Scripts", required: false)
 
 </body>
 </html>
