@@ -136,7 +136,6 @@ namespace SweetShop
                      new CultureInfo("en-US"),
                      new CultureInfo("zh-TW")
                  };
-                 options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
                  options.SupportedCultures = supportedCultures;
                  options.SupportedUICultures = supportedCultures;
              });
