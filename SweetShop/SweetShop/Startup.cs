@@ -123,14 +123,10 @@ namespace SweetShop
             });
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
-
-            services.AddMvc()
-                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
-                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
             services.Configure<RequestLocalizationOptions>(
              options =>
              {
+                 options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
                  var supportedCultures = new List<CultureInfo>
                  {
                      new CultureInfo("en-US"),
@@ -138,7 +134,12 @@ namespace SweetShop
                  };
                  options.SupportedCultures = supportedCultures;
                  options.SupportedUICultures = supportedCultures;
+                 
              });
+
+            services.AddMvc()
+                .AddViewLocalization()
+                .AddDataAnnotationsLocalization();
 
             if (!_env.IsDevelopment())
             {
@@ -175,8 +176,7 @@ namespace SweetShop
                 .ReportUris(r => r.Uris("/report"))
             );*/
 
-            var requestLocalizationOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
-            app.UseRequestLocalization(requestLocalizationOptions.Value);
+            app.UseRequestLocalization();
 
             app.UseCookiePolicy();
             app.UseMvc(routes =>
