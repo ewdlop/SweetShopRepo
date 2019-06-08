@@ -4,7 +4,7 @@
     Layout = "_Layout";
 }
 <div class="jumbotron text-center" style="background-color:#87784d">
-    <h2 style="color:#ffffff" align=center>Welcome to the Demo Sweet Shop(course project)</h2>
+    <h2 style="color:#ffffff" align=center>Welcome to the Demo Sweet Shop</h2>
     <h4 style="color:#ffffff" align=center>Please enjoy!</h4>
     @await Html.PartialAsync("Carousel")
 </div>
@@ -29,4 +29,7 @@
     <h2 style="color:#ffffff" align=center>Time left for the offer!</h2>
     <script src="~/content/countdown.js"></script>
     <countdown id="countdown"></countdown>
+</div>
+<div class="footer-copyright text-center py-3">
+    @await Html.PartialAsync("_SelectLanguagePartial")
 </div>

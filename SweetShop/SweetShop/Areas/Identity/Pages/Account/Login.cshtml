@@ -1,9 +1,11 @@
 ﻿@page
 @model LoginModel
-
-@{
-    ViewData["Title"] = "Sign in";
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{ 
+    ViewData["Title"] = Localizer["Login"];
 }
+
 <div class="jumbotron text-center" style="background-color:#87784d">
     <h2 style="color: white">@ViewData["Title"]</h2>
     <div class="row">
@@ -75,6 +77,9 @@
             </section>
         </div>
     </div>
+</div>
+<div class="footer-copyright text-center py-3">
+    @await Html.PartialAsync("_SelectLanguagePartial")
 </div>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

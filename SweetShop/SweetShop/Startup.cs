@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,9 +9,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SweetShop.Helpers;
 using SweetShop.Models;
@@ -116,7 +121,25 @@ namespace SweetShop
                 options.Preload = true;
                 options.IncludeSubDomains = true;
             });
-            services.AddMvc();
+
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.AddMvc()
+                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.Configure<RequestLocalizationOptions>(
+             options =>
+             {
+                 var supportedCultures = new List<CultureInfo>
+                 {
+                     new CultureInfo("en-US"),
+                     new CultureInfo("zh-TW")
+                 };
+                 options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
+                 options.SupportedCultures = supportedCultures;
+                 options.SupportedUICultures = supportedCultures;
+             });
 
             if (!_env.IsDevelopment())
             {
@@ -152,6 +175,9 @@ namespace SweetShop
                 "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"))
                 .ReportUris(r => r.Uris("/report"))
             );*/
+
+            var requestLocalizationOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(requestLocalizationOptions.Value);
 
             app.UseCookiePolicy();
             app.UseMvc(routes =>
