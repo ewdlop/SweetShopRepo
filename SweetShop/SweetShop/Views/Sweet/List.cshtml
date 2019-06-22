@@ -4,12 +4,64 @@
 
 <div class="jumbotron text-center" style="background-color:#87784d">
     <div class="row display-flex">
-        @foreach (var sweet in Model.Sweets)
-        {
-            @await Html.PartialAsync("SweetOverviewSummary", sweet)
-        }
+        <div id="sweetDiv">
+            @foreach (var sweet in Model.Sweets)
+            {
+                @await Html.PartialAsync("SweetOverviewSummary", sweet)
+            }
+        </div>
     </div>
 </div>
 @section scripts{
+    <script>
+        $(document).ready(function (){
+            LoadMorePies();
+        });
+        $(window).scroll(function () {
+            if ($(window).scrollTop == $(document).height() - $(window).height())
+            {
+                LoadMorePies();
+            }
+        });
+        function LoadMorePies() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/SweetData',
+                dataType: 'json',
+                success: function (jsonData) {
+                    if (jsonData == null) {
+                        alert('no data returned');
+                        return;
+                    }
+                    $.each(jsonData, function (index, sweet) {
 
+                        var price = sweet.Price;
+                        price = (sweet + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+                        var SweetSummaryString =
+                            '<div class="col-sm-4 col-lg-4 col-md-4" style="display:none">' +
+                            '   <div class="thumbnail">' +
+                            '       <img src="' + sweet.ImageThumbnailUrl + '" alt="">' +
+                            '       <div class"caption">' +
+                            '           <h3 class="pull-right">' + price + '</h3>' +
+                            '           <h4>' +
+                            '               <a href=/Sweet/Details?Id=' + sweet.Id + '>' + sweet.Name + '</a>' +
+                            '           </h4>' +
+                            '           <p>' + sweet.ShortDescription + '</p>' +
+                            '           <p class="button">' +
+                            '               <a class="btn btn-primary" href=/ShoppingCart/AddToShoppingCart?Id=' + sweet.Id + '>Add to cart</a>' +
+                            '           </p>' +
+                            '       </div>' +
+                            '   </div>' +
+                            '</div>';
+                        $('#sweetDiv').append(SweetSummaryString);
+                    });
+                },
+                error: function (ex) {
+                    alert(ex);
+                }
+            });
+        }
+    </script>
 }
+
+

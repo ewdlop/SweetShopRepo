@@ -55,8 +55,8 @@
     <div class="container body-content">
         <div class="row">
             @RenderBody()
+            @RenderSection("scripts", required: false)
             <hr />
-
         </div>
     </div>
     <nav class="navbar navbar-inverse navbar-fixed-bottom">
@@ -65,7 +65,7 @@
             <a href="https://sweetshop20190515065500.azurewebsites.net/">https://sweetshop20190515065500.azurewebsites.net/</a>
         </div>
     </nav>
-        @RenderSection("Scripts", required: false)
+
 
 </body>
 </html>
