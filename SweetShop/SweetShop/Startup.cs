@@ -173,7 +173,7 @@ namespace SweetShop
                 context.Response.Headers.Add("X-Xss-Protection", "1");
                 await next();
             });
-
+             
 
             /*app.UseCsp(options => options.DefaultSources(s => s.Self())  
                 .ScriptSources(s => s.Self().CustomSources("https://ajax.googleapis.com", 

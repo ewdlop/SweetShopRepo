@@ -15,40 +15,40 @@
 @section scripts{
     <script>
         $(document).ready(function (){
-            LoadMorePies();
+            LoadMoreSweets();
         });
         $(window).scroll(function () {
-            if ($(window).scrollTop == $(document).height() - $(window).height())
+            if ($(window).scrollTop() == $(document).height() - $(window).height())
             {
-                LoadMorePies();
+                LoadMoreSweets();
             }
         });
-        function LoadMorePies() {
+        function LoadMoreSweets() {
             $.ajax({
-                type: 'GET',
-                url: '/api/SweetData',
-                dataType: 'json',
+                type: "GET",
+                url: "api/SweetData",
+                contentType: "application/json; charset=utf-8", 
+                dataType: "json",
                 success: function (jsonData) {
                     if (jsonData == null) {
                         alert('no data returned');
                         return;
                     }
                     $.each(jsonData, function (index, sweet) {
-
-                        var price = sweet.Price;
+                        var price = sweet.price;
                         price = (sweet + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
                         var SweetSummaryString =
                             '<div class="col-sm-4 col-lg-4 col-md-4" style="display:none">' +
                             '   <div class="thumbnail">' +
-                            '       <img src="' + sweet.ImageThumbnailUrl + '" alt="">' +
-                            '       <div class"caption">' +
-                            '           <h3 class="pull-right">' + price + '</h3>' +
+                            '       <img src="' + sweet.imageThumbnailUrl + '" alt="">' +
+                            '       <div class="caption">' +
+                            '           <h3 class="">$' + sweet.price + '</h3>' +
                             '           <h4>' +
-                            '               <a href=/Sweet/Details?Id=' + sweet.Id + '>' + sweet.Name + '</a>' +
+                            '               <a href=/Sweet/Details?Id=' + sweet.id + '>' + sweet.name + '</a>' +
                             '           </h4>' +
-                            '           <p>' + sweet.ShortDescription + '</p>' +
+                            '           <p>' + sweet.shortDescription + '</p>' +
                             '           <p class="button">' +
-                            '               <a class="btn btn-primary" href=/ShoppingCart/AddToShoppingCart?Id=' + sweet.Id + '>Add to cart</a>' +
+                            '               <a class="btn btn-primary" href=/ShoppingCart/AddToShoppingCart?Id=' + sweet.id + '>Add to cart</a>' +
                             '           </p>' +
                             '       </div>' +
                             '   </div>' +

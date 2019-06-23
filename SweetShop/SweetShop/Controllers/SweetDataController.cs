@@ -24,7 +24,7 @@ namespace SweetShop.Controllers
         public IEnumerable<SweetViewModel> LoadMoreSweets()
         {
             IEnumerable<Sweet> dbSweets = null;
-            dbSweets = _sweetRepository.GetSweets().OrderBy(s => s.Id).Take(2);
+            dbSweets = _sweetRepository.GetSweets().OrderBy(s => s.Id).Take(15);
             List<SweetViewModel> sweets = new List<SweetViewModel>();
             foreach(var dbSweet in dbSweets)
             {
